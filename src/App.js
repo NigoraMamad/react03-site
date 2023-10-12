@@ -42,6 +42,13 @@ function App() {
   const [postTitle, setPostTitle] = useState('');
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const filteredResults = posts.filter(post => 
+      ((post.body).toLowerCase()).includes(search.toLowerCase()) || ((post.title).toLowerCase()).includes(search.toLowerCase())) ;
+
+      setSearchResults(filteredResults.reverse());
+  }, [posts, search ])
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const id = posts.length ? posts[posts.length - 1] + 1 : 1;
@@ -65,9 +72,9 @@ function App() {
   return (
   <Routes>
     <Route  path='/' element = {<Layout search={search} setSearch={setSearch} />}>
-        <Route index element={< Home posts={posts} />} />
+        <Route index element={< Home posts={searchResults} />} />
         <Route path='post'>
-          <Route index elemtent = {<NewPost 
+          <Route index element = {<NewPost 
             handleSubmit={handleSubmit}
             postTitle={postTitle}
             setPostTitle={setPostTitle}

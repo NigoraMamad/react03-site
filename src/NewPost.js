@@ -5,7 +5,7 @@ const NewPost = ({handleSubmit, postBody, setPostBody, postTitle, setPostTitle})
     <main className='NewPost'>
      <h2>NewPost</h2>
      <form className='newPostForm' onSubmit={handleSubmit}>
-      <label htmlFor="postTitle">Title</label>
+      <label htmlFor="postTitle">Title:</label>
       <input
        type="text" 
        id='postTitle'
